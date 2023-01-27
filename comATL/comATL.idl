@@ -1,0 +1,37 @@
+﻿// comATL.idl: comATL 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 生成类型库(comATL.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(11751e89-78ad-4afa-b3ea-c5b20a87152c),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface IATLSimpleObject : IDispatch
+{
+	[id(1)] HRESULT atlsum([in] LONG a, [in] LONG b, [out, retval] LONG* c);
+};
+[
+	uuid(4f36a51d-ba4d-4c4f-a32e-e51c9c45a13b),
+	version(1.0),
+]
+library comATLLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(bf042934-2653-4e92-99b2-66db8cb24168)
+	]
+	coclass ATLSimpleObject
+	{
+		[default] interface IATLSimpleObject;
+	};
+};
+
+import "shobjidl.idl";

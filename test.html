@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+  </head>
+  <body>
+     <form action="" enctype="application/x-www-form-urlencoded">
+          <input type="button" name="ok" id="ok" value="HTTP GET">
+      </form>
+  </body>
+  <script type="text/javascript" >
+	window.onload = function () {
+		document.getElementById("ok").onclick = function () {
+        
+        //创建XMLHttpRequest对象       
+        var httpRequest
+		try{ // Firefox, Opera 8.0+, Safari
+			httpRequest=new XMLHttpRequest();
+		}
+		catch (e){
+			try{// Internet Explorer
+				httpRequest=new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch (e){
+				try{
+					httpRequest=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				catch (e){}
+			}
+		}
+		
+
+        httpRequest.open('GET',
+		//'http://localhost/cgi-bin/dllhelpercpp.cgi',
+		'http://localhost/',
+		true);
+        httpRequest.send();//发送请求
+        
+         // 获取数据后的处理程序
+         
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                var str = httpRequest.responseText;//获取到助手程序返回的字符串
+               	alert(str);				
+            }
+        };
+
+    }
+	
+}		
+  </script>
+</html>
